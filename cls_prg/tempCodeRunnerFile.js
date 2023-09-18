@@ -1,0 +1,2 @@
+
+const day = newDate.getDay()

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokes|Random</title>
+    <style>
+        body{
+
+            display:flex;
+            flex-direction:column;
+            justify-content: space-around;
+            align-items: center;
+        }
+        h1{
+
+            font-size: 9vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color:#4e10aa;
+        }
+        #jokeque
+        {
+            font-size: 2.5vh;
+            width:70vw;
+            padding:1vh 9vh 1vh 9vh;
+            margin-left:10vw;
+            margin-right:10vw;
+            background: #898989;
+            border-radius: 1vh;
+            color:#ffff;
+
+        }
+        #jokeans
+        {
+            font-size: 2.5vh;
+            padding-left:10vw;
+            color:#4d0b4f;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #btn
+        {
+            width:20vw;
+            height:5vh;
+            outline:none;
+            border:2px solid #fff;
+            color:#fff;
+            background: #151516;
+            border-radius: .5vh;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Jokes</h1>
+    <div id="Container">
+       
+        
+    </div>
+    <button type="button" id = 'btn'>Generate</button>
+    <script>
+
+        let container = document.getElementById('Container');
+        let btn = document.getElementById('btn')
+        async function fetchJoke()
+            {
+                let response = await fetch('https://v2.jokeapi.dev/joke/Any')
+                let JOKE = await response.json()
+
+                if(JOKE.setup)
+                {
+                    container.innerHTML = `<p id="jokeque">${JOKE.setup}</p>
+                    <p id="jokeans">${JOKE.delivery}</p>`
+                }
+                else
+                {
+                    
+                    container.innerHTML = `<p id="jokeque">${JOKE.joke}</p>`
+                }
+            }
+
+        btn.addEventListener('click',fetchJoke)
+    </script>
+</body>
+</html>

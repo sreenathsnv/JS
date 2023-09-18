@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>class program</title>
+ 
+  </head>
+  <body>
+	<h1>Class program</h1>
+	<p id = "time"></p>
+	<p id = 'url'></p>
+	<h2>Enter a number</h2>
+	<input type = 'number' id ='guessinput'>
+	<button id = 'guess-btn'>Guess</button><br><br>
+	<h2>Enter two number</h2>
+	<form>
+		<input type = 'number' id ='number-1'><br>
+		<input type = 'number' id ='number-2'><br>
+		<button id = 'mult-btn'>Multiply</button>
+		<button id = 'div-btn'>Divide</button>
+	</form>
+	
+	
+	<script>
+	const dateObj = new Date();
+	const day = dateObj.getDay();
+	const hour = dateObj.getHours()%12;
+	const mins = dateObj.getMinutes();
+	const second = dateObj.getSeconds();
+	const timePara = document.getElementById('time');
+	const URL= document.getElementById('url');
+
+	const Guess = document.getElementById('guessinput');
+	const GuessBtn = document.getElementById('guess-btn');
+
+	const multBtn = document.getElementById('mult-btn');
+	const divBtn = document.getElementById('div-btn');
+	const num1 = document.getElementById('number-1');
+	const num2 = document.getElementById('number-2');
+	
+	
+	GuessBtn.addEventListener('click',function(){
+	if(Guess.value !== ''){
+		let random_num = Math.floor(Math.random()*10);
+		let guess = Number(Guess.value);
+		if(random_num == guess){alert("Good work")}
+		else{alert("Not matched")}
+		console.log(Guess.value,random_num);
+	}
+	else{alert("Invalid input")}
+});
+
+	divBtn.addEventListener('click',function(){
+
+		let n = Number(num1.value);
+		let m = Number(num2.value);
+		if(num1.value !== '' || num2.value !== '')
+		{
+			if(m == 0){alert('cannot divide a number by zero')}
+		else{
+			alert(`${n} / ${m} = ${n/m}`); 
+		}
+		}
+		else{alert("Invalid input")}			
+});
+
+	multBtn.addEventListener('click',function(){
+	if(num1.value !== '' || num2.value !== ''){
+		let n = Number(num1.value);
+		let m = Number(num2.value);
+		
+		alert(`${n} x ${m} = ${n*m}`); 
+	}
+else{alert("Invalid input")}		
+
+
+
+});
+
+	const days = ['Sunday','Monday','Tuesday','Wednessday','Thursday','Friday','Saturday'];
+	timePara.innerHTML = `Today is ${days[day]}<br>Current time is ${hour} : ${mins} : ${second}`; 
+	URL.innerHTML = ` URL : ${document.URL}<br> Extension : ${document.URL.split('/').pop().split('.').pop()}`	
+	</script>
+  </body>
+</html>
